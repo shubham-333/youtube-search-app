@@ -12,8 +12,11 @@ def index(request):
             'part': 'snippet',
             'q': request.POST['search'],
             'key': settings.YOUTUBE_DATA_API_KEY,
+            'type' : 'video',
+            'order' : 'date',
+            'publishedAfter':'2020-01-01T00:00:00Z',
             'maxResults': 9,
-            'type' : 'video'
+
         }
         
         r = requests.get(search_url, params=search_params)
@@ -38,6 +41,8 @@ def index(request):
 
         results = r.json()['items']
         videos = []
+
+        # print(results['ContentDetails'])
         for result in results:
             video_data = {
                 'title': result['snippet']['title'],
