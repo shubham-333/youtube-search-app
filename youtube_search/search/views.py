@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 import requests
-from isodate import parse_duration 
+from isodate import parse_duration
+from datetime import datetime
+
 def index(request):
     videos = []
 
@@ -15,7 +17,7 @@ def index(request):
             'type' : 'video',
             'order' : 'date',
             'publishedAfter':'2020-01-01T00:00:00Z',
-            'maxResults': 9,
+            'maxResults': 100,
 
         }
         
@@ -42,15 +44,17 @@ def index(request):
         results = r.json()['items']
         videos = []
 
-        # print(results['ContentDetails'])
+        
         for result in results:
             video_data = {
                 'title': result['snippet']['title'],
                 'id': result['id'],
                 'url': f'https://www.youtube.com/watch?v={result["id"]}',
+                'publishedAt': datetime.strptime(result['snippet']['publishedAt'],'%Y-%m-%dT%H:%M:%SZ').strftime('%d %b, %Y'),
                 'duration': int(parse_duration(result['contentDetails']['duration']).total_seconds()//60),
                 'thumbnail': result['snippet']['thumbnails']['high']['url'],
             }
+            print(video_data['publishedAt'])
 
             videos.append(video_data)
 
