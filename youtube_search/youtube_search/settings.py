@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+jx_ad(36vxvjv4o@4ms%(&zec8yyd*%36p7z7ibpy+jbbmh#h'
+SECRET_KEY = 'django-insecure-vo8-9(_*umhrz(dbnk#b$3oupna4xxijjr+59$pdd(t27=uhl='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,16 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'search',
-    'django_celery_results',
-    'django_celery_beat',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'search',
+    'django_celery_beat',
+    'django_celery_results',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-YOUTUBE_DATA_API_KEY = 'AIzaSyDwMn0J8_F0BxN3tULOYA4l8OkKhGeAfB4'
+YOUTUBE_DATA_API_KEY = 'AIzaSyBKXVro-vT3uetdFFYi-LAocJ4yFkthBG0'
 
 
 # CELERY SETTINGS
@@ -139,3 +140,9 @@ CELERY_RESULT_BACKEND = 'django-db'
 
 #CELERY BEAT SETTINGS
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'PAGE_SIZE': 10
+}
