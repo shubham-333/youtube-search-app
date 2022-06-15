@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'search',
     'django_celery_results',
-
+    'django_celery_beat',
 
     'django.contrib.admin',
     'django.contrib.auth',
