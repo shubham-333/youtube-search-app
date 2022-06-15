@@ -58,7 +58,7 @@ def update_data(self):
             'thumbnail': result['snippet']['thumbnails']['high']['url'],
             'description': result['snippet']['description'],
         }
-        print(video_data['publishedAt'])
+        # print(video_data['publishedAt'])
         Videos.objects.create(
                     video_id=video_data['id'],
                     title=video_data['title'],
