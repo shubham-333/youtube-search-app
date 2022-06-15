@@ -21,8 +21,8 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 `cd youtube_app`
 
 * Set up a virtual environment for the project:
-`python -m venv virtualenv`
-`venv\source\activate`
+  * `python -m venv virtualenv`
+  * `venv\source\activate`
 
 * download redis from this [link](https://github.com/microsoftarchive/redis/releases)
 
@@ -31,7 +31,7 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 
 * Modify settings.py File - add new YouTube Data API key at
 `YOUTUBE_DATA_API_KEY`
-  * For getting API keys follow [this](https://developers.google.com/youtube/v3/getting-started)
+  * For getting API keys follow this [link](https://developers.google.com/youtube/v3/getting-started)
 
 * To start the server, celery worker and celery beat, run the following commands in three seprate terminals
   * `python manage.py runserver`
