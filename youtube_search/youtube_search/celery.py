@@ -3,6 +3,8 @@ import os
 
 from celery import Celery
 from django.conf import settings
+from celery.schedules import crontab
+from django_celery_beat.models import PeriodicTask
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'youtube_search.settings')
 
@@ -14,6 +16,16 @@ app.conf.update(timezone = 'Asia/Kolkata')
 app.config_from_object(settings, namespace='CELERY')
 
 # CELERY BEAT SETTINGS
+app.conf.beat_schedule = {
+    'test_task':{
+        'task':'youtube_search.tasks.test_func',
+        'schedule': crontab(hour=16, minute=19),
+        #'args': (2,)
+    }
+}
+
+
+app.autodiscover_tasks()
 
 @app.task(bing=True)
 def debug_task(self):
