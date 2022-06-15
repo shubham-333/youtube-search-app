@@ -3,6 +3,13 @@ from django.shortcuts import render, redirect
 import requests
 from isodate import parse_duration
 from datetime import datetime
+from django.http import HttpResponse
+from .tasks import test_func
+
+def test(request):
+    test_func.delay()
+    return HttpResponse("Done")
+
 
 def index(request):
     videos = []
