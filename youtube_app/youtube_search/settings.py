@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-YOUTUBE_DATA_API_KEY = 'AIzaSyBm6vMSJ2s8Obigb5Jnf3acIqiVYfq3W2c'
+YOUTUBE_DATA_API_KEY = '*******************'
 
 
 # CELERY SETTINGS
